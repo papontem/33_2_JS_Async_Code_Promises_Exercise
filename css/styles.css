@@ -1,0 +1,78 @@
+@media (min-width: 481px) {
+	/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+}
+@media (min-width: 641px) {
+	/* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+}
+@media (min-width: 961px) {
+	/* tablet, landscape iPad, lo-res laptops ands desktops */
+}
+@media (min-width: 1025px) {
+	/* big landscape tablets, laptops, and desktops */
+}
+@media (min-width: 1281px) {
+	/* hi-res laptops and desktops */
+}
+
+:root {
+	--my-color1: white;
+	--my-color1-9: rgba(255, 255, 255, 0.9);
+	--my-color2: rgb(211, 211, 211);
+	--my-color2-75: rgba(211, 211, 211, 0.75);
+	--my-color3: rgb(220, 165, 49);
+	--my-color4: rgb(180, 100, 45);
+	--my-color5: rgb(80, 30, 12);
+	--my-color6: rgb(40, 15, 6);
+	--my-color7: rgb(20, 5, 3);
+	--my-color8: rgb(255, 215, 0);
+	--my-color9: rgb(139, 0, 0);
+	--my-color10: rgb(0, 0, 0);
+	--my-color10-70: rgba(0, 0, 0,0.7);
+
+	/* font-family: "BIZ UDPGothic", sans-serif; */
+
+	scrollbar-color: white black;
+	/* clamp for font size to change depending on view window size*/
+	font-size: clamp(2.25vw, 17px, 3.25vw);
+}
+
+body {
+	background-image: url(../imgs/PAM_C_v2_wallpaper_480.png);
+	/*  */
+	background-color: var(--my-color2);
+}
+
+nav {
+    background-color: var(--my-color10);
+    color: var(--my-color1);
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-start; 
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: var(--my-color1);
+}
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+section {
+    background-color: var(--my-color1);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px var(--my-color10-70);
+}
