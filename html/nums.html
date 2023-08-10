@@ -22,10 +22,24 @@
     <section id="main-content">
         <h1>Numbers API</h1>
         <h2> Do you like Number trivia?</h2>
-        <button id="getRandomFactsBtn">Get Trivia! </button>
-        <ul id="nums-fact-list">
 
-        </ul>
+        <div id="fav-number-form-wrapper">
+            <form id="fav-number-form">
+                <label for="favNum">Enter your favorite number:</label>
+                <input type="number" id="favNum" name="favNum" min="0" max="987654321" value="0">
+                <small id="warning-message" class="form-warning"></small>
+                <button type="submit">Submit</button>
+
+            </form>
+        </div>
+
+        <div id="nums-fact-list-wrapper">
+            <h3>Trivia Fact List</h3>
+            <button id="getRandomFactsBtn">Get Random Trivia!</button>
+            <ul id="nums-fact-list">
+
+            </ul>
+        </div>
 
     </section>
     <!--line to seperate main body and footer -->

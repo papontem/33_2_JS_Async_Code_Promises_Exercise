@@ -76,3 +76,11 @@ section {
     border-radius: 5px;
     box-shadow: 0px 2px 4px var(--my-color10-70);
 }
+
+ul#nums-fact-list{
+    margin: 20px;
+    outline: dashed 2px black;
+}
+#warning-message{
+    color: var(--my-color9);
+}
