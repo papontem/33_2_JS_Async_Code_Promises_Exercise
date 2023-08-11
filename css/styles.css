@@ -91,26 +91,21 @@ section {
 #cards-table{
 	background-color: rgb(38, 109, 42);
 	color: var(--my-color1);
-	height: 50dvh;
+	height: 75dvh;
 	padding: 10px;
 	margin: 10px;
 	border-radius: 5px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh; 
-	list-style: none;
 }
 .card-wrapper {
     position: absolute;
     top: 50%; /* Center vertically */
     left: calc(50% - 80px); /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust centering */
+	transform: translate(-50%, -50%);
+    
 }
 .card {
-    position: absolute;
     z-index: 0; /* Set initial z-index */
-    transition: z-index 0.2s; /* Add a transition effect for smooth stacking */
+	transform: translate(calc(-50% + 115px), -50%);
 }
 
 /* NUMBERS */

@@ -16,14 +16,14 @@ $(document).ready(function () {
 
     if(deck_id == undefined){
         // debug
-        console.log("WE SEE YOUR DECK IS UNDEFINED LETS CUT YOU A NEW ONE.");
+        // console.log("WE SEE YOUR DECK IS UNDEFINED LETS CUT YOU A NEW ONE.");
 
         // make api call and get a new deck
         const newShuffledDeckUrl = baseUrl + `/deck/new/shuffle/?deck_count=1`
         axios.get(newShuffledDeckUrl)
             .then( newDeckJson => {
                 
-                console.log("RESOLVED!  Heres Your New Deck Json:", newDeckJson);
+                // console.log("RESOLVED!  Heres Your New Deck Json:", newDeckJson);
                 // example resonse
                 // {
                 //     "success": true,
@@ -71,7 +71,7 @@ $(document).ready(function () {
         // Draw a card from the deck
         axios.get(drawCardUrl)
             .then(drawnCardResJson => {
-                console.log("RESOLVED! Heres Your Draw Card Json:", drawnCardResJson);
+                // console.log("RESOLVED! Heres Your Draw Card Json:", drawnCardResJson);
 
                 const card = drawnCardResJson.data.cards[0];
                 console.log(`Drawn Card: ${card.value} of ${card.suit}`);
@@ -144,8 +144,25 @@ $(document).ready(function () {
                 }
 
                 const card = drawnCardResJson.data.cards[0];
-                console.log(`Drawn Card: ${card.value} of ${card.suit}`);
-                $('#cards-table').append(`<div class="card-wrapper"><img class="card" src="${card.image}" alt="img of a card"></div>`);
+                // function from nums.js
+                const getRandomIntShimmy = (min = 0, max = 100) => Math.floor(Math.random() * (max - min + 1)) + min;
+                const getRandomDeg = (min = -360, max = 360) => Math.round((Math.random() * (max - min) + min) * 10) / 10;
+                let yShimmy = getRandomIntShimmy(-16,13) 
+                let xShimmy = getRandomIntShimmy(-52,25) 
+                let degRotate = getRandomDeg(-35,35)
+                // console.log(`shimmy it by: (${xShimmy}, ${yShimmy}) `)
+                // console.log("Rotate By:", degRotate);
+                // console.log(`Drawn Card: ${card.value} of ${card.suit}`);
+                $('#cards-table')
+                .append(
+                    `<div class="card-wrapper" 
+                        style="transform: rotate(${degRotate}deg);">
+                        <img class="card" 
+                            style="transform: translate(${xShimmy}px, ${yShimmy}px);
+                            "src="${card.image}" 
+                            alt="img of a card">
+                    </div>`
+                    );
                 
             })
             .catch(error => {
