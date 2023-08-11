@@ -1,15 +1,29 @@
 $(document).ready(function () {
     console.log("HELLO DECK OF CARDS!");
-
-    // PART 2.1
-    // Make a request to the Deck of Cards API to request a single card from a newly shuffled deck.
-    // Once you have the card, console.log the value and the suit (e.g. “5 of spades”, “queen of diamonds”).
     
-    
-    // We need to check if we have a deck_id already saved in local storage if not well call this api url to create a new deck
-    // a new deck will be stored for some time in their server, while we keep the deck id.
     const baseUrl = 'https://deckofcardsapi.com/api';
 
+    // PART 2.1
+    /**
+     * Make a request to the Deck of Cards API to request a single card from a newly shuffled deck.
+     * Once you have the card, console.log the value and the suit (e.g. “5 of spades”, “queen of diamonds”.
+     * 
+     * We need to check if we have a deck_id already saved in local storage. 
+     * if not well call this api url to create a new deck a new deck will be stored for some time in their server, while we keep the deck id.
+    */
+    
+    let deck_id = localStorage.getItem("deck_id");
+
+    if(deck_id == undefined){
+        console.log("WE SEE YOUR DECK IS UNDEFINED LETS CUT YOU A NEW ONE.");
+        deck_id = "Bonyour"
+        localStorage.setItem("deck_id", deck_id)
+    } else {
+        console.log("USER, WE FOUND YOUR DECK!!");
+        console.log(deck_id);
+    }
+
+    
     // // call this if we only want to make a new deck thats in order from A-K Spa, Dia, Clu, H<3
     // const newDeckUrl = 'https://deckofcardsapi.com/api/deck/new/';
     // // get 2 jokers added in a new deck
