@@ -40,6 +40,7 @@ body {
 	background-image: url(../imgs/PAM_C_v2_wallpaper_480.png);
 	/*  */
 	background-color: var(--my-color2);
+	color: black;
 }
 
 nav {
