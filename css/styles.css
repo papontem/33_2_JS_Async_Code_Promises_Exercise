@@ -76,11 +76,28 @@ section {
     border-radius: 5px;
     box-shadow: 0px 2px 4px var(--my-color10-70);
 }
+#warning-message{
+	color: var(--my-color9);
+}
 
+/* SPECIFIC PAGE STYLES */
+/* CARDS */
+#drawCardBtn-wrapper{
+	display: flex;
+    justify-content: center; 
+    margin: 0;
+    padding: 0;
+}
+#cards-list{
+	background-color: rgb(38, 109, 42);
+	color: var(--my-color1);
+	height: 100dvh;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 5px;
+}
+/* NUMBERS */
 ul#nums-fact-list{
     margin: 20px;
     outline: dashed 2px black;
-}
-#warning-message{
-    color: var(--my-color9);
 }

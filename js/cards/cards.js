@@ -2,7 +2,7 @@ $(document).ready(function () {
     console.log("HELLO DECK OF CARDS!");
     
     const baseUrl = 'https://deckofcardsapi.com/api';
-
+    
     // PART 2.1
     /**
      * Make a request to the Deck of Cards API to request a single card from a newly shuffled deck.
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
         // later on we might want to re-render the cards user has already drawn from seeing which they have in the pile
         console.log("WE SEE YOUR DECK IS DEFINED LETS SHUFFLE IT.");
-        
+
         const shuffleMyDeckUrl = `${baseUrl}/deck/${deck_id}/shuffle/`
         axios.get(shuffleMyDeckUrl)
             .then(shuffledDeckResJson => {
@@ -73,7 +73,38 @@ $(document).ready(function () {
             .then(drawnCardResJson => {
                 console.log("RESOLVED! Heres Your Draw Card Json:", drawnCardResJson);
 
+                const card = drawnCardResJson.data.cards[0];
+                console.log(`Drawn Card: ${card.value} of ${card.suit}`);
+            })
+            .catch(error => {
+                console.error('REJECTED!! ERROR:', error);
+            });
+
+    });
+
+    // Listen for button click to draw 2 cards
+    $('#draw2CardsBtn').on('click', function(){
+        if (!deck_id) {
+            console.error('Deck ID is missing.');
+            return;
+        }
+        
+        // once we have the deck id we can then call draw a card.
+        // set this to the value of cards you want per draw, default has been one
+        const numbOfCards = 1
+        drawCardUrl =`${baseUrl}/deck/${deck_id}/draw/?count=${numbOfCards}`
+        // Draw a card from the deck
+        axios.get(drawCardUrl)
+            .then(drawnCardResJson => {
+                console.log("RESOLVED! Heres Your Draw Card Json:", drawnCardResJson);
+
                 let card = drawnCardResJson.data.cards[0];
+                console.log(`Drawn Card: ${card.value} of ${card.suit}`);
+                return axios.get(drawCardUrl)
+            }).then(drawnCardResJson => {
+                console.log("RESOLVED! Heres Your Draw Card Json:", drawnCardResJson);
+
+                card = drawnCardResJson.data.cards[0];
                 console.log(`Drawn Card: ${card.value} of ${card.suit}`);
             })
             .catch(error => {
