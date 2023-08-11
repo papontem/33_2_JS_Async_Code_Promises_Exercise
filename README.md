@@ -6,4 +6,4 @@ We will complete the following tasks using promises in JavaScript:
 
 ## How To Run
 - Download a clone of this repo
-- open the index.html file ocaly from your preffered browser.
+- open the index.html file localy from your preffered browser.
