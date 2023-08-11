@@ -15,51 +15,71 @@ $(document).ready(function () {
     let deck_id = localStorage.getItem("deck_id");
 
     if(deck_id == undefined){
+        // debug
         console.log("WE SEE YOUR DECK IS UNDEFINED LETS CUT YOU A NEW ONE.");
-        deck_id = "Bonyour"
-        localStorage.setItem("deck_id", deck_id)
-    } else {
-        console.log("USER, WE FOUND YOUR DECK!!");
-        console.log(deck_id);
+
+        // make api call and get a new deck
+        const newShuffledDeckUrl = baseUrl + `/deck/new/shuffle/?deck_count=1`
+        axios.get(newShuffledDeckUrl)
+            .then( newDeckJson => {
+                
+                console.log("RESOLVED!  Heres Your New Deck Json:", newDeckJson);
+                // example resonse
+                // {
+                //     "success": true,
+                //     "deck_id": "zog29tpzjkzx",
+                //     "shuffled": true,
+                //     "remaining": 52
+                // }
+                deck_id = newDeckJson.data.deck_id
+                // put deck_id in local storage
+                localStorage.setItem("deck_id", deck_id)
+            })
+            .catch(error => {
+                console.error('REJECTED!! ERROR:', error);
+            });
+
+    }else{
+        // we have a deck_id value, lets see if the deck is still alice in the deck of cards api server by trying to shuffle the cards again
+
+        // later on we might want to re-render the cards user has already drawn from seeing which they have in the pile
+        console.log("WE SEE YOUR DECK IS DEFINED LETS SHUFFLE IT.");
+        
+        const shuffleMyDeckUrl = `${baseUrl}/deck/${deck_id}/shuffle/`
+        axios.get(shuffleMyDeckUrl)
+            .then(shuffledDeckResJson => {
+                console.log("RESOLVED! Here your Deck Json:", shuffledDeckResJson);
+                
+            })
+            .catch(error => {
+                console.error('REJECTED!! ERROR:', error);
+            });
+
     }
-
     
-    // // call this if we only want to make a new deck thats in order from A-K Spa, Dia, Clu, H<3
-    // const newDeckUrl = 'https://deckofcardsapi.com/api/deck/new/';
-    // // get 2 jokers added in a new deck
-    // const newJokerDeckUrl = 'https://deckofcardsapi.com/api/deck/new/?jokers_enabled=true';
-    // // will probably use this url
-    let newShuffledDeckUrl = baseUrl + `/deck/new/shuffle/?deck_count=1`
-    // example resonse
-    // {
-    //     "success": true,
-    //     "deck_id": "3p40paa87x90",
-    //     "shuffled": true,
-    //     "remaining": 52
-    // }
 
-    // once we have the deck id we can then call draw a card.
-    let numbOfCards = 1
-    let drawCardUrl = baseUrl + `deck/<<deck_id>>/draw/?count=${numbOfCards}`
-    // // TIP: replace <<deck_id>> with "new" to create a shuffled deck and draw cards from that deck in the same request.
-    // // example resonse
-    // {
-    //     "success": true, 
-    //     "deck_id": "kxozasf3edqu", 
-    //     "cards": [
-    //         {
-    //             "code": "6H", 
-    //             "image": "https://deckofcardsapi.com/static/img/6H.png", 
-    //             "images": {
-    //                           "svg": "https://deckofcardsapi.com/static/img/6H.svg", 
-    //                           "png": "https://deckofcardsapi.com/static/img/6H.png"
-    //                       }, 
-    //             "value": "6", 
-    //             "suit": "HEARTS"
-    //         }
-    //     ], 
-    //     "remaining": 51
-    // }
-    // // Now we can grab the data from the response and log the info to user
+    // Listen for button click to draw a card
+    $('#drawCardBtn').on('click', function(){
+        if (!deck_id) {
+            console.error('Deck ID is missing.');
+            return;
+        }
+        
+        // once we have the deck id we can then call draw a card.
+        const numbOfCards = 1
+        const drawCardUrl =`${baseUrl}/deck/${deck_id}/draw/?count=${numbOfCards}`
+        // Draw a card from the deck
+        axios.get(drawCardUrl)
+            .then(drawnCardResJson => {
+                console.log("RESOLVED! Heres Your Draw Card Json:", drawnCardResJson);
+
+                let card = drawnCardResJson.data.cards[0];
+                console.log(`Drawn Card: ${card.value} of ${card.suit}`);
+            })
+            .catch(error => {
+                console.error('REJECTED!! ERROR:', error);
+            });
+
+    });
     
 });
