@@ -49,7 +49,7 @@ $(document).ready(function () {
         Promise.all(numListPromises)
         .then(numApiResponses => {
             // uncomment if you want the list to refresh
-            // $('#nums-fact-list').empty();
+            $('#nums-fact-list').empty();
 
             numApiResponses.forEach(res => {
                 const randFact = `Random fact about # ${res.data.number}: ${res.data.text}`;
