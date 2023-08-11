@@ -3,3 +3,7 @@
 We will complete the following tasks using promises in JavaScript:
 - Implementing GET requests to the Numbers API ([http://numbersapi.com/](http://numbersapi.com/))
 - Implementing GET requests to the Deck of Cards API ([https://deckofcardsapi.com/](https://deckofcardsapi.com/))
+
+## How To Run
+- Download a clone of this repo
+- open the index.html file ocaly from your preffered browser.
