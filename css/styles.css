@@ -88,14 +88,31 @@ section {
     margin: 0;
     padding: 0;
 }
-#cards-list{
+#cards-table{
 	background-color: rgb(38, 109, 42);
 	color: var(--my-color1);
-	height: 100dvh;
+	height: 50dvh;
 	padding: 10px;
 	margin: 10px;
 	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh; 
+	list-style: none;
 }
+.card-wrapper {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: calc(50% - 80px); /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust centering */
+}
+.card {
+    position: absolute;
+    z-index: 0; /* Set initial z-index */
+    transition: z-index 0.2s; /* Add a transition effect for smooth stacking */
+}
+
 /* NUMBERS */
 ul#nums-fact-list{
     margin: 20px;
